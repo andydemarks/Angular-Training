@@ -1,0 +1,60 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-4'>Enter a sol (Martian rotation/day):</div>
+      <div class='col-md-4'>
+        <input type='text'
+               [(ngModel)]='solFilter' />
+      </div>
+      <div class='col-md-4'>
+        <button class="btn btn-primary submit" (click)="getPhotosFromSol(solFilter)">Submit</button>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-4'>Filter By:</div>
+      <div class='col-md-4'>
+        <input type='text'
+        [(ngModel)]='listFilter' />
+      </div>
+    </div>
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>
+              <button class='btn btn-primary'
+                      (click)='toggleImage()'>
+                {{showImage ? 'Hide' : 'Show'}} Image
+              </button>
+            </th>
+            <th>ID</th>
+            <th>Sol</th>
+            <th>Camera</th>
+            <th>Earth Date</th>
+            <th>Rover Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let mySol of listOfSols'>
+            <td>
+              <img *ngIf='showImage'
+                   [src]='mySol.img_src'
+                   width="500px"
+                   height="500px"/>
+            </td>
+            <td>{{mySol.id}}</td>
+            <td>{{mySol.sol}}</td>
+            <td>{{mySol.camera.full_name}}</td>
+            <td>{{mySol.earth_date}}</td>
+            <td>{{mySol.rover.name}}</td>
+            <td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
